@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { ITodo } from '../models/todo.inteface';
+import { ITodo } from '../models/todo.interface';
 
 @Injectable({
   providedIn: 'root',
@@ -54,11 +54,11 @@ export class TodoService {
   public onTodoAction(todoId: string, action: string): void {
     const existingTodos: Array<ITodo> = this._todoSubject.value;
 
-   // const todoIndex = existingTodos.findIndex(
-      //this.singleTodo > this.singleTodo.id 
-    //);
-   // existingTodos[todoIndex][action] = true;
+     const todoIndex = existingTodos.findIndex(( singleTodo ) => singleTodo.id === todoId);
+     existingTodos[todoIndex][action] = true;
     this._todoSubject.next(existingTodos);
     localStorage.setItem('todos', JSON.stringify(existingTodos));
   }
+
+
 }

@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { NewTodoComponent } from '../components/new-todo/new-todo.component';
-import { ITodo } from '../models/todo.inteface';
+import { ITodo } from '../models/todo.interface';
 import { TodoService } from '../services/todo.service';
 
 @Component({

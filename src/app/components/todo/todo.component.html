@@ -1,6 +1,5 @@
 <mat-card class="todo-card" *ngIf="todo && !todo.isArchived">
-  <mat-card-header >
-    <div mat-card-avatar class="example-header-image"></div>
+  <mat-card-header>
     <mat-card-title>{{ todo.title }}</mat-card-title>
     <mat-card-subtitle>{{ todo.description }}</mat-card-subtitle>
   </mat-card-header>
@@ -13,4 +12,6 @@
       Archive
     </button>
   </mat-card-actions>
+
+  <app-count-down [dDay]="todo.endDate"></app-count-down>
 </mat-card>

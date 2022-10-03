@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { ITodo } from 'src/app/models/todo.inteface';
+import { ITodo } from 'src/app/models/todo.interface';
 import { TodoService } from 'src/app/services/todo.service';
 
 @Component({
@@ -24,12 +24,12 @@ export class TodoComponent implements OnInit {
   ngOnInit(): void {}
 
   public onCompleteTodo(todo: ITodo): void {
-    // todo.isCompleted = true;
-    this.todoService.onTodoAction(todo.id, 'isCompleted');
+    //todo.isCompleted = true;
+     this.todoService.onTodoAction(todo.id, "isCompleted");
   }
 
   public onArchiveTodo(): void {
     //this.todo.isArchived = true;
-    this.todoService.onTodoAction(this.todo.id, 'isArchived');
+     this.todoService.onTodoAction(this.todo.id, "isArchived");
   }
 }

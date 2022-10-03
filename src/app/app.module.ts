@@ -12,6 +12,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
 import { TodoContainerComponent } from './todo-container/todo-container.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { CountDownComponent } from './components/count-down/count-down.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     TodoComponent,
     NewTodoComponent,
     TodoContainerComponent,
+    CountDownComponent,
   ],
   imports: [
     BrowserModule,
