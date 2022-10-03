@@ -6,55 +6,27 @@ import { ITodo } from '../models/todo.inteface';
   providedIn: 'root',
 })
 export class TodoService {
-  private mock: ITodo[] = [
-    {
-      id: 1,
-      title: 'Madagascar hawk owl',
-      description: 'Ninox superciliaris',
-      isCompleted: false,
-      isArchived: true,
-      endDate: '11/16/2021',
-      selected: true,
-    },
-    {
-      id: 2,
-      title: 'Pelican, brown',
-      description: 'Pelecanus occidentalis',
-      isCompleted: false,
-      isArchived: true,
-      endDate: '12/9/2021',
-      selected: false,
-    },
-    {
-      id: 3,
-      title: 'Marten, american',
-      description: 'Martes americana',
-      isCompleted: false,
-      isArchived: false,
-      endDate: '6/24/2022',
-      selected: false,
-    },
-    {
-      id: 4,
-      title: 'Blackish oystercatcher',
-      description: 'Haematopus ater',
-      isCompleted: false,
-      isArchived: false,
-      endDate: '6/10/2022',
-      selected: false,
-    },
-  ];
-
+  private todos: Array<ITodo> = [];
   private _todoSubject: BehaviorSubject<Array<ITodo>> = new BehaviorSubject(
-    this.mock
+    this.todos
   );
   private _singleTodoSubject: BehaviorSubject<ITodo> = new BehaviorSubject(
-    this.mock[0]
+    this.todos.length ? this.todos[0] : null
   );
 
   constructor() {}
 
   public getTodos(): Observable<Array<ITodo>> {
+    if (!this._todoSubject.value.length) {
+      const todosString = localStorage.getItem('todos');
+      if (todosString) {
+        const existingTodos: Array<ITodo> = JSON.parse(todosString);
+        existingTodos[0].selected = true;
+        this._todoSubject.next(existingTodos);
+        this._singleTodoSubject.next(existingTodos[0]);
+      }
+    }
+
     return this._todoSubject.asObservable();
   }
 
@@ -64,5 +36,17 @@ export class TodoService {
 
   public setSelectedTodo(todo: ITodo) {
     this._singleTodoSubject.next(todo);
+  }
+
+  public addNewTodo(newTodo: ITodo): void {
+    //take existing todos
+    //add new todo to existing todo
+    //trigger next tic in observable
+    console.log(newTodo);
+    const existingTodos: Array<ITodo> = this._todoSubject.value;
+    existingTodos.push(newTodo);
+    this._todoSubject.next(existingTodos);
+
+    localStorage.setItem('todos', JSON.stringify(existingTodos));
   }
 }
