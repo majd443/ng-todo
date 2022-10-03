@@ -6,6 +6,7 @@ import { ITodo } from '../models/todo.inteface';
   providedIn: 'root',
 })
 export class TodoService {
+  private singleTodo: ITodo ;
   private todos: Array<ITodo> = [];
   private _todoSubject: BehaviorSubject<Array<ITodo>> = new BehaviorSubject(
     this.todos
@@ -47,6 +48,17 @@ export class TodoService {
     existingTodos.push(newTodo);
     this._todoSubject.next(existingTodos);
 
+    localStorage.setItem('todos', JSON.stringify(existingTodos));
+  }
+
+  public onTodoAction(todoId: string, action: string): void {
+    const existingTodos: Array<ITodo> = this._todoSubject.value;
+
+   // const todoIndex = existingTodos.findIndex(
+      //this.singleTodo > this.singleTodo.id 
+    //);
+   // existingTodos[todoIndex][action] = true;
+    this._todoSubject.next(existingTodos);
     localStorage.setItem('todos', JSON.stringify(existingTodos));
   }
 }
