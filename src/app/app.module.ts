@@ -10,6 +10,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { TodoComponent } from './components/todo/todo.component';
 import { MatDialogModule } from '@angular/material/dialog';
 import { NewTodoComponent } from './components/new-todo/new-todo.component';
+import { TodoContainerComponent } from './todo-container/todo-container.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -18,6 +20,7 @@ import { NewTodoComponent } from './components/new-todo/new-todo.component';
     HeaderComponent,
     TodoComponent,
     NewTodoComponent,
+    TodoContainerComponent,
   ],
   imports: [
     BrowserModule,
@@ -25,6 +28,7 @@ import { NewTodoComponent } from './components/new-todo/new-todo.component';
     BrowserAnimationsModule,
     MaterialModule,
     MatDialogModule,
+    MatFormFieldModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

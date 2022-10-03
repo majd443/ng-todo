@@ -1,15 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Form } from '@angular/forms';
 
 @Component({
   selector: 'app-new-todo',
   templateUrl: './new-todo.component.html',
-  styleUrls: ['./new-todo.component.scss']
+  styleUrls: ['./new-todo.component.scss'],
 })
 export class NewTodoComponent implements OnInit {
+  @ViewChild('f') form: Form;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
+
+  public onNewTodoSubmit(): void {
+    console.log('on submit');
+    console.log(this.form);
   }
-
 }
